@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Sigmar One:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/social-share.js/1.0.9/css/share.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.0.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=0.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=0.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=0.0.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="DIYgod,blog" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaScript数据类型与深浅拷贝一、JavaScript数据类型原始类型  Null：只包含一个值：null Undefined：只包含一个值：undefined Boolean：包含两个值：true和false Number：整数或浮点数，还有一些特殊值（-Infinity、+Infinity、NaN） String：一串表示文本值的字符序列 Symbol：一种实例是唯一且不可改变的数据类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript数据类型与深浅拷贝">
+<meta property="og:url" content="http://yoursite.com/2020/06/27/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/index.html">
+<meta property="og:site_name" content="吴天是个大傻逼">
+<meta property="og:description" content="JavaScript数据类型与深浅拷贝一、JavaScript数据类型原始类型  Null：只包含一个值：null Undefined：只包含一个值：undefined Boolean：包含两个值：true和false Number：整数或浮点数，还有一些特殊值（-Infinity、+Infinity、NaN） String：一串表示文本值的字符序列 Symbol：一种实例是唯一且不可改变的数据类">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-27T05:26:11.678Z">
+<meta property="article:modified_time" content="2020-06-27T07:31:23.565Z">
+<meta property="article:author" content="夏天。">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '0.0.4',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '2/9/2014 11:30:00',
+    onlineAPI: '',
+    site: {
+      title: '吴天是个大傻逼',
+      subtitle: '',
+      author: '夏天。'
+    },
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/images/favicon.ico',
+      hidden: '/images/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)喔哟，崩溃啦！'
+    }
+  };
+</script>
+
+
+
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/27/JavaScript数据类型与深浅拷贝/"/>
+
+
+
+
+
+  <title>JavaScript数据类型与深浅拷贝 | 吴天是个大傻逼</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48084758-7', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-投喂">
+          <a href="/donate/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cutlery"></i> <br />
+            
+            投喂
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-后宫">
+          <a href="/friends/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mars"></i> <br />
+            
+            后宫
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-留言板">
+          <a href="/message/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+          </form>
+      </li>
+      <li class="menu-item online"><span id="online-count">?</span>人在线</li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper" style="background-image: url(/images/header-sagiri.jpg)">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate" class="animate">
+            <span>吴</span><span>天</span><span>是</span><span>个</span><span>大</span><span>傻</span><span>逼</span>
+          </div>
+          <div id="guide" class="guide">
+            <span>吴</span><span>天</span><span>是</span><span>个</span><span>大</span><span>傻</span><span>逼</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar" itemprop="image" src="/images/DIYgod.jpg" alt="夏天。" />
+    <h2 class="site-master-description" itemprop="description">
+        
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">06月</div>
+			<div class="post-day">27</div>
+	</div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/27/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏天。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/DIYgod.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴天是个大傻逼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript数据类型与深浅拷贝</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-27T13:26:11+08:00">
+                2020-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript数据类型与深浅拷贝"><a href="#JavaScript数据类型与深浅拷贝" class="headerlink" title="JavaScript数据类型与深浅拷贝"></a>JavaScript数据类型与深浅拷贝</h1><h2 id="一、JavaScript数据类型"><a href="#一、JavaScript数据类型" class="headerlink" title="一、JavaScript数据类型"></a>一、JavaScript数据类型</h2><p><strong>原始类型</strong></p>
+<ul>
+<li><code>Null</code>：只包含一个值：<code>null</code></li>
+<li><code>Undefined</code>：只包含一个值：<code>undefined</code></li>
+<li><code>Boolean</code>：包含两个值：<code>true</code>和<code>false</code></li>
+<li><code>Number</code>：整数或浮点数，还有一些特殊值（<code>-Infinity</code>、<code>+Infinity</code>、<code>NaN</code>）</li>
+<li><code>String</code>：一串表示文本值的字符序列</li>
+<li><code>Symbol</code>：一种实例是唯一且不可改变的数据类型</li>
+</ul>
+<p>(在<code>es10</code>中加入了第七种原始类型<code>BigInt</code>，现已被最新<code>Chrome</code>支持)</p>
+<p><strong>对象类型</strong></p>
+<ul>
+<li><code>Object</code>：自己分一类丝毫不过分，除了常用的<code>Object</code>，<code>Array</code>、<code>Function</code>等都属于特殊的对象</li>
+</ul>
+<h2 id="二、值传递和引用传递"><a href="#二、值传递和引用传递" class="headerlink" title="二、值传递和引用传递"></a>二、值传递和引用传递</h2><p><strong>基本数据类型</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'ConardLi'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeValue</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  name = <span class="string">'code秘密花园'</span>;</span><br><span class="line">&#125;</span><br><span class="line">changeValue(name);</span><br><span class="line"><span class="built_in">console</span>.log(name);<span class="comment">//'ConardLi'</span></span><br></pre></td></tr></table></figure>
+
+<p>执行上面的代码，如果最终打印出来的<code>name</code>是<code>&#39;ConardLi&#39;</code>，没有改变，说明对于基本数据类型函数参数传递的是变量的值，即值传递。</p>
+<p>由执行结果可以看出，函数参数仅仅是把传入的变量复制给了一个局部变量，在函数内部改变这个局部变量是不会对外部变量产生影响的。</p>
+<p><strong>引用类型：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = &#123;<span class="attr">name</span>:<span class="string">'ConardLi'</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeValue</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">  person.name = <span class="string">'code秘密花园'</span>;</span><br><span class="line">&#125;</span><br><span class="line">changeValue(p1);</span><br><span class="line"><span class="built_in">console</span>.log(p1.name); <span class="comment">// code秘密花园</span></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，<strong>JavaScript中所有函数的参数都是按值传递的</strong></p>
+<p>同样的，当函数参数是引用类型时，我们同样将参数复制了一个副本到局部变量，只不过复制的这个副本是指向堆内存中的地址而已，我们在函数内部对对象的属性进行操作，实际上和外部变量指向堆内存中的值相同，但是这并不代表着引用传递</p>
+<p>重点看下面的例子:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeValue</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">  person.name = <span class="string">'ConardLi'</span>;</span><br><span class="line">  person = &#123;<span class="attr">name</span>:<span class="string">'code秘密花园'</span>&#125;;</span><br><span class="line">  <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p2 = changeValue(p1);</span><br><span class="line"><span class="built_in">console</span>.log(p1.name); <span class="comment">// ConardLi</span></span><br><span class="line"><span class="built_in">console</span>.log(p2.name); <span class="comment">// code秘密花园</span></span><br></pre></td></tr></table></figure>
+
+<p>这是《JavaScript高级程序设计第三版》中验证当函数参数为引用类型时，其参数传递仍然是按值传递而不是按引用传递的证明。其实在这我仍然有个疑惑，为什么书中强调“如果当函数参数传递为引用类型时，在函数内部重新创建的person将之前的person覆盖后，原来的p1.name会更新？</p>
+<p>我所认为的<code>JavaScript中所有函数的参数都是按值传递的</code>这句话，对于基本类型是将传递给函数的参数复制了一份作为函数内部的局部变量，对于引用类型，是将传递给函数的引用类型的地址复制了一份作为函数内部的局部变量，而“按值传递”对于引用类型而言，那个值就是“地址”</p>
+<h2 id="三、深浅拷贝"><a href="#三、深浅拷贝" class="headerlink" title="三、深浅拷贝"></a>三、深浅拷贝</h2><h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a><strong>浅拷贝</strong></h3><h4 id="1-什么是浅拷贝"><a href="#1-什么是浅拷贝" class="headerlink" title="1.什么是浅拷贝"></a><strong>1.什么是浅拷贝</strong></h4><p>对对象而言，它的第一层属性值如果是基本数据类型则完全拷贝一份数据，如果是引用类型就拷贝内存地址。</p>
+<h4 id="2-实现方法"><a href="#2-实现方法" class="headerlink" title="2.实现方法"></a><strong>2.实现方法</strong></h4><p><strong><code>Object.assign()</code></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">    name: <span class="string">'yang'</span>,</span><br><span class="line">    res: &#123;</span><br><span class="line">        value: <span class="number">123</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="built_in">Object</span>.assign(&#123;&#125;, obj1)</span><br><span class="line">obj2.res.value = <span class="number">456</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2) <span class="comment">// &#123;name: "yang", res: &#123;value: 456&#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1) <span class="comment">// &#123;name: "yang", res: &#123;value: 456&#125;&#125;</span></span><br><span class="line">obj2.name = <span class="string">'haha'</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2) <span class="comment">// &#123;name: "haha", res: &#123;value: 456&#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1) <span class="comment">// &#123;name: "yang", res: &#123;value: 456&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>展开语法(…) <code>Spread</code></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">    name: <span class="string">'yang'</span>,</span><br><span class="line">    res: &#123;</span><br><span class="line">        value: <span class="number">123</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;...obj2&#125; = obj1</span><br><span class="line">obj2.res.value = <span class="number">456</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2) <span class="comment">// &#123;name: "yang", res: &#123;value: 456&#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1) <span class="comment">// &#123;name: "haha", res: &#123;value: 456&#125;&#125;</span></span><br><span class="line">obj2.name = <span class="string">'haha'</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2) <span class="comment">// &#123;name: "haha", res: &#123;value: 456&#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1) <span class="comment">// &#123;name: "yang", res: &#123;value: 456&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><code>Array.prototype.slice</code></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [</span><br><span class="line">     <span class="string">'yang'</span>,</span><br><span class="line">     &#123;</span><br><span class="line">         value: <span class="number">123</span></span><br><span class="line">     &#125;</span><br><span class="line"> ];</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">const</span> arr2 = arr1.slice(<span class="number">0</span>);</span><br><span class="line"> arr2[<span class="number">1</span>].value = <span class="number">456</span>;</span><br><span class="line"> <span class="built_in">console</span>.log(arr2); <span class="comment">// ["yang", &#123;value: 456&#125;]</span></span><br><span class="line"> <span class="built_in">console</span>.log(arr1); <span class="comment">// ["yang", &#123;value: 456&#125;]</span></span><br><span class="line"> arr2[<span class="number">0</span>] = <span class="string">'haha'</span>;</span><br><span class="line"> <span class="built_in">console</span>.log(arr2); <span class="comment">// ["haha", &#123;value: 456&#125;]</span></span><br><span class="line"> <span class="built_in">console</span>.log(arr1); <span class="comment">// ["yang", &#123;value: 456&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><code>Array.prototype.concat</code></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [</span><br><span class="line">      <span class="string">'yang'</span>,</span><br><span class="line">      &#123;</span><br><span class="line">          value: <span class="number">123</span></span><br><span class="line">      &#125;</span><br><span class="line">  ];</span><br><span class="line">  </span><br><span class="line"><span class="keyword">const</span> arr2 = [].concat(arr1);</span><br><span class="line">arr2[<span class="number">1</span>].value = <span class="number">456</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// ["yang", &#123;value: 456&#125;]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// ["yang", &#123;value: 456&#125;]</span></span><br><span class="line">arr2[<span class="number">0</span>] = <span class="string">'haha'</span>; </span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// ["haha", &#123;value: 456&#125;]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// ["yang", &#123;value: 456&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<p>实际上对于数组来说， 只要不修改原数组， 重新返回一个新数组就可以实现浅拷贝，比如说map、filter、reduce等方法</p>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><h4 id="1-什么是深拷贝"><a href="#1-什么是深拷贝" class="headerlink" title="1.什么是深拷贝"></a>1.什么是深拷贝</h4><p>深拷贝就是不管是基本数据类型还是引用数据类型都重新拷贝一份， 不存在共用数据的现象</p>
+<h4 id="2、实现方法"><a href="#2、实现方法" class="headerlink" title="2、实现方法"></a>2、实现方法</h4><p>这是要拷贝的对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $obj = &#123;</span><br><span class="line">    func: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'this is function'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    date: <span class="keyword">new</span> <span class="built_in">Date</span>(),	</span><br><span class="line">    symbol: <span class="built_in">Symbol</span>(),</span><br><span class="line">    a: <span class="literal">null</span>,</span><br><span class="line">    b: <span class="literal">undefined</span>,</span><br><span class="line">    c: &#123;</span><br><span class="line">        a: <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    e: <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'regexp'</span>),</span><br><span class="line">    f: <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'error'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj.c.d = $obj</span><br></pre></td></tr></table></figure>
+
+<p><strong>暴力版本 <code>JSON.parse(JSON.stringify(object))</code></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify($obj))</span><br><span class="line"><span class="built_in">console</span>.log(obj) 			<span class="comment">// 不能解决循环引用</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	VM348:1 Uncaught TypeError: Converting circular structure to JSON</span></span><br><span class="line"><span class="comment">    at JSON.stringify (&lt;anonymous&gt;)</span></span><br><span class="line"><span class="comment">    at &lt;anonymous&gt;:1:17</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">delete</span> $obj.c.d</span><br><span class="line"><span class="keyword">let</span> obj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify($obj))</span><br><span class="line"><span class="built_in">console</span>.log(obj) 			<span class="comment">// 丢失了大部分属性</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">        a: null</span></span><br><span class="line"><span class="comment">        c: &#123;a: 1&#125;</span></span><br><span class="line"><span class="comment">        date: "2020-04-05T09:51:32.610Z"</span></span><br><span class="line"><span class="comment">        e: &#123;&#125;</span></span><br><span class="line"><span class="comment">        f: &#123;&#125;</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>存在的问题：</p>
+<p>1、会忽略 <code>undefined</code></p>
+<p>2、会忽略 <code>symbol</code></p>
+<p>3、不能序列化函数</p>
+<p>4、不能解决循环引用的对象</p>
+<p>5、不能正确处理<code>new Date()</code></p>
+<p>6、不能处理正则</p>
+<p>7、不能处理new Error()</p>
+<p><strong>第一版 基础版本</strong></p>
+<p>递归遍历对象属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj === <span class="literal">null</span> || <span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> copy = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">    <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">v</span> =&gt;</span> &#123;</span><br><span class="line">        copy[key] = deepCopy(obj[key])</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> copy</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">deepCopy($obj)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">VM601:23 Uncaught RangeError: Maximum call stack size exceeded</span></span><br><span class="line"><span class="comment">    at &lt;anonymous&gt;:23:30</span></span><br><span class="line"><span class="comment">    at Array.forEach (&lt;anonymous&gt;)</span></span><br><span class="line"><span class="comment">    at deepCopy (&lt;anonymous&gt;:23:22)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">delete</span> $obj.c.d</span><br><span class="line">deepCopy($obj)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    a: null</span></span><br><span class="line"><span class="comment">    b: undefined</span></span><br><span class="line"><span class="comment">    c: &#123;a: 1&#125;</span></span><br><span class="line"><span class="comment">    date: &#123;&#125;</span></span><br><span class="line"><span class="comment">    e: &#123;&#125;</span></span><br><span class="line"><span class="comment">    f: &#123;&#125;</span></span><br><span class="line"><span class="comment">    func: ƒ ()</span></span><br><span class="line"><span class="comment">    symbol: Symbol()</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>存在的问题是：</p>
+<p>1、不能解决循环引用的对象</p>
+<p>2、不能正确处理<code>new Date()</code></p>
+<p>3、不能处理正则</p>
+<p>4、不能处理new Error()</p>
+<p><strong>第二版 解决循环引用</strong></p>
+<p>先解决解决循环遍历问题， 解决办法是将对象，对象属性存储在数组中查看下次遍历时有无已经遍历过的对象，有则直接返回， 否则继续遍历</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span> (<span class="params">obj, cache = []</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj === <span class="literal">null</span> || <span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> item = cache.filter(<span class="function"><span class="params">item</span> =&gt;</span> item.original === obj)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> (item) <span class="keyword">return</span> item.copy</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> copy = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">    cache.push(&#123;</span><br><span class="line">        original: obj,</span><br><span class="line">        copy</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">        copy[key] = deepCopy(obj[key], cache)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> copy</span><br><span class="line">&#125;</span><br><span class="line">deepCopy($obj)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    a: null</span></span><br><span class="line"><span class="comment">    b: undefined</span></span><br><span class="line"><span class="comment">    c: &#123;a: 1, d: &#123;…&#125;&#125;</span></span><br><span class="line"><span class="comment">    date: &#123;&#125;</span></span><br><span class="line"><span class="comment">    e: &#123;&#125;</span></span><br><span class="line"><span class="comment">    f: &#123;&#125;</span></span><br><span class="line"><span class="comment">    func: ƒ ()</span></span><br><span class="line"><span class="comment">    symbol: Symbol()</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>完美解决了循环引用问题, 但是仍然存在几个小问题，都属于同一类问题</p>
+<p><strong>第三版 解决特殊值</strong></p>
+<p>对于最终的几个对象的处理，可以判断类型， 重新new一个返回就可以了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span> (<span class="params">obj, cache = []</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj === <span class="literal">null</span> || <span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object Date]'</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(obj)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object RegExp]'</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">RegExp</span>(obj)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object Error]'</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Error</span>(obj)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> item = cache.filter(<span class="function"><span class="params">item</span> =&gt;</span> item.original === obj)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> (item) <span class="keyword">return</span> item.copy</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> copy = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">    cache.push(&#123;</span><br><span class="line">        original: obj,</span><br><span class="line">        copy</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">        copy[key] = deepCopy(obj[key], cache)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> copy</span><br><span class="line">&#125;</span><br><span class="line">deepCopy($obj)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    a: null</span></span><br><span class="line"><span class="comment">    b: undefined</span></span><br><span class="line"><span class="comment">    c: &#123;a: 1, d: &#123;…&#125;&#125;</span></span><br><span class="line"><span class="comment">    date: Fri Apr 10 2020 20:06:08 GMT+0800 (中国标准时间) &#123;&#125;</span></span><br><span class="line"><span class="comment">    e: /regexp/</span></span><br><span class="line"><span class="comment">    f: Error: Error: error at deepCopy (&lt;anonymous&gt;:8:74) at &lt;anonymous&gt;:19:21 at Array.forEach (&lt;anonymous&gt;) at deepCopy (&lt;anonymous&gt;:18:22) at &lt;anonymous&gt;:24:1</span></span><br><span class="line"><span class="comment">    func: ƒ ()</span></span><br><span class="line"><span class="comment">    symbol: Symbol()</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>除此之外Promise、Set、Map、WeakSet、WeakMap也可以用相同的办法处理</p>
+</blockquote>
+<p><strong>第四版 解决函数引用相同</strong></p>
+<p>到这里基本功能似乎已经实现， 但是还存在一个问题， 就是函数引用了同一个内存地址, 对于这个问题网上大部分都是直接返回或者返回为对象， 包括lodash也是这么处理的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isFunc = <span class="keyword">typeof</span> value == <span class="string">'function'</span></span><br><span class="line"><span class="keyword">if</span> (isFunc || !cloneableTags[tag]) &#123;</span><br><span class="line">       <span class="keyword">return</span> object ? value : &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么如何结局这个问题就需要用eval函数， 虽说这个函数已经不推荐使用， 但是它还是能解决问题的。 函数这里分两种： <code>普通函数</code>和<code>箭头函数</code>， 区分这两者只需要看有无<code>prototype</code>, 有<code>prototype</code>属性就属于普通函数， 没有就是箭头函数。</p>
+<blockquote>
+<p>普通函数属于函数声明， 不能直接使用eval， 需要用小括号包起来形成函数表达式， 而箭头函数本身就是函数表达式</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyFunction</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> fnStr = func.toString()</span><br><span class="line">	<span class="keyword">return</span> func.prototype ? <span class="built_in">eval</span>(<span class="string">`(<span class="subst">$&#123;fnStr&#125;</span>)`</span>) : <span class="built_in">eval</span>(fnStr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span> (<span class="params">obj, cache = []</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj === <span class="string">'function'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> copyFunction(obj)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (obj === <span class="literal">null</span> || <span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object Date]'</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(obj)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object RegExp]'</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">RegExp</span>(obj)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object Error]'</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Error</span>(obj)</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">const</span> item = cache.filter(<span class="function"><span class="params">item</span> =&gt;</span> item.original === obj)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> (item) <span class="keyword">return</span> item.copy</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> copy = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">    cache.push(&#123;</span><br><span class="line">        original: obj,</span><br><span class="line">        copy</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">        copy[key] = deepCopy(obj[key], cache)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> copy</span><br><span class="line">&#125;</span><br><span class="line">deepCopy($obj).func === $obj.func <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>最后贴一个链接：</strong></p>
+<p><a href="https://juejin.im/post/5d6aa4f96fb9a06b112ad5b1#heading-0" target="_blank" rel="noopener">ConardLi大佬手写深浅拷贝</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="夏天。 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="夏天。 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/26/%E4%BD%A0%E7%9C%9F%E7%9A%84%E7%90%86%E8%A7%A3%E9%97%AD%E5%8C%85%E4%BA%86%E5%90%97/" rel="next" title="你真的理解闭包了吗">
+                <i class="fa fa-chevron-left"></i> 你真的理解闭包了吗
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/27/JavaScript%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="prev" title="JavaScript之判断数据类型">
+                JavaScript之判断数据类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <div class="disqus-loading">
+          <strong>Disqus 加载中...</strong>
+          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
+
+
+  
+
+    
+      <script type="text/javascript">
+        if (disqus_config) {
+          var disqus_config = function () {
+            this.page.url = 'http://yoursite.com/2020/06/27/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/';
+            this.page.identifier = '2020/06/27/JavaScript数据类型与深浅拷贝/';
+            this.page.title = 'JavaScript数据类型与深浅拷贝';
+          };
+          if (window.DISQUS) {
+            $('.disqus-loading').remove();
+            window.DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.url = 'http://yoursite.com/2020/06/27/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/';
+                this.page.identifier = '2020/06/27/JavaScript数据类型与深浅拷贝/';
+                this.page.title = 'JavaScript数据类型与深浅拷贝';
+              }
+            });
+          }
+        }
+        else {
+          var disqus_config = function () {
+            this.page.url = 'http://yoursite.com/2020/06/27/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/';
+            this.page.identifier = '2020/06/27/JavaScript数据类型与深浅拷贝/';
+            this.page.title = 'JavaScript数据类型与深浅拷贝';
+          };
+          var d = document, s = d.createElement('script');
+          s.src = 'https://diygod-me.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', '' + +new Date());
+          (d.head || d.body).appendChild(s);
+        }
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/card.jpg"
+                alt="夏天。" />
+            
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">网红</span>DIYgod</p>
+              <p class="site-description motion-element" itemprop="description">你能抓到我么？</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DIYgod" target="_blank" title="GitHub" data-balloon="GitHub" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/DIYgod" target="_blank" title="Twitter" data-balloon="Twitter" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="/images/qq-g.jpg" target="_blank" title="QQ 群" data-balloon="QQ 群" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-qq"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://t.me/awesomeDIYgod" target="_blank" title="Telegram Channel" data-balloon="Telegram Channel" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-telegram"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.anotherhome.net/3163" target="_blank" title="更多" data-balloon="更多" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-more"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+            
+
+          </nav>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.png" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript数据类型与深浅拷贝"><span class="nav-number">1.</span> <span class="nav-text">JavaScript数据类型与深浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、JavaScript数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">一、JavaScript数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、值传递和引用传递"><span class="nav-number">1.2.</span> <span class="nav-text">二、值传递和引用传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、深浅拷贝"><span class="nav-number">1.3.</span> <span class="nav-text">三、深浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅拷贝"><span class="nav-number">1.3.1.</span> <span class="nav-text">浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-什么是浅拷贝"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1.什么是浅拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-实现方法"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2.实现方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深拷贝"><span class="nav-number">1.3.2.</span> <span class="nav-text">深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-什么是深拷贝"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1.什么是深拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、实现方法"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2、实现方法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image"></div>
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+<p>custom text</p>
+
+<p>© <span itemprop="copyrightYear">2020</span> 吴天是个大傻逼.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.4.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+    xxxx.
+</p>
+<p>Made with <i class="fa fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">夏天。</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+    <canvas id="live2d" width="150" height="400" class="live2d"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.4"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

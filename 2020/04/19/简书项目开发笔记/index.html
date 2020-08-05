@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Sigmar One:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/social-share.js/1.0.9/css/share.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.0.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=0.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=0.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=0.0.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="简书前端开发," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="React简书开发实战笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简书项目开发笔记">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="吴天是个大傻逼">
+<meta property="og:description" content="React简书开发实战笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-19T15:13:25.000Z">
+<meta property="article:modified_time" content="2020-04-25T07:52:40.971Z">
+<meta property="article:author" content="夏天。">
+<meta property="article:tag" content="简书前端开发">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '0.0.4',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '2/9/2014 11:30:00',
+    onlineAPI: '',
+    site: {
+      title: '吴天是个大傻逼',
+      subtitle: '',
+      author: '夏天。'
+    },
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/images/favicon.ico',
+      hidden: '/images/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)喔哟，崩溃啦！'
+    }
+  };
+</script>
+
+
+
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/简书项目开发笔记/"/>
+
+
+
+
+
+  <title>简书项目开发笔记 | 吴天是个大傻逼</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48084758-7', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-投喂">
+          <a href="/donate/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cutlery"></i> <br />
+            
+            投喂
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-后宫">
+          <a href="/friends/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mars"></i> <br />
+            
+            后宫
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-留言板">
+          <a href="/message/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+          </form>
+      </li>
+      <li class="menu-item online"><span id="online-count">?</span>人在线</li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper" style="background-image: url(/images/header-sagiri.jpg)">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate" class="animate">
+            <span>吴</span><span>天</span><span>是</span><span>个</span><span>大</span><span>傻</span><span>逼</span>
+          </div>
+          <div id="guide" class="guide">
+            <span>吴</span><span>天</span><span>是</span><span>个</span><span>大</span><span>傻</span><span>逼</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar" itemprop="image" src="/images/DIYgod.jpg" alt="夏天。" />
+    <h2 class="site-master-description" itemprop="description">
+        
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">04月</div>
+			<div class="post-day">19</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/React/" itemprop="url" rel="index">
+          <span itemprop="name">React</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏天。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/DIYgod.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴天是个大傻逼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">简书项目开发笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T23:13:25+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="React简书开发实战笔记"><a href="#React简书开发实战笔记" class="headerlink" title="React简书开发实战笔记"></a>React简书开发实战笔记</h1><a id="more"></a>
+
+<h2 id="1-Header组件开发"><a href="#1-Header组件开发" class="headerlink" title="1. Header组件开发"></a>1. Header组件开发</h2><h3 id="1-在项目根目录下安装styled-component组件对CSS样式进行编写"><a href="#1-在项目根目录下安装styled-component组件对CSS样式进行编写" class="headerlink" title="1.在项目根目录下安装styled-component组件对CSS样式进行编写"></a><strong>1.在项目根目录下安装styled-component组件对CSS样式进行编写</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add styled-component</span><br></pre></td></tr></table></figure>
+
+<p>由于项目主组件的CSS样式文件index.css会有全局污染，所以引入styled component对项目样式进行组件化开发</p>
+<h3 id="2-创建style-js，引入以下全局样式清楚浏览器默认样式"><a href="#2-创建style-js，引入以下全局样式清楚浏览器默认样式" class="headerlink" title="2.创建style.js，引入以下全局样式清楚浏览器默认样式"></a><strong>2.创建style.js，引入以下全局样式清楚浏览器默认样式</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createGlobalStyle  &#125; <span class="keyword">from</span> <span class="string">'styled-components'</span>;</span><br><span class="line"></span><br><span class="line">injectGlobal<span class="string">`</span></span><br><span class="line"><span class="string">	html, body, div, span, applet, object, iframe,</span></span><br><span class="line"><span class="string">	h1, h2, h3, h4, h5, h6, p, blockquote, pre,</span></span><br><span class="line"><span class="string">	a, abbr, acronym, address, big, cite, code,</span></span><br><span class="line"><span class="string">	del, dfn, em, img, ins, kbd, q, s, samp,</span></span><br><span class="line"><span class="string">	small, strike, strong, sub, sup, tt, var,</span></span><br><span class="line"><span class="string">	b, u, i, center,</span></span><br><span class="line"><span class="string">	dl, dt, dd, ol, ul, li,</span></span><br><span class="line"><span class="string">	fieldset, form, label, legend,</span></span><br><span class="line"><span class="string">	table, caption, tbody, tfoot, thead, tr, th, td,</span></span><br><span class="line"><span class="string">	article, aside, canvas, details, embed, </span></span><br><span class="line"><span class="string">	figure, figcaption, footer, header, hgroup, </span></span><br><span class="line"><span class="string">	menu, nav, output, ruby, section, summary,</span></span><br><span class="line"><span class="string">	time, mark, audio, video &#123;</span></span><br><span class="line"><span class="string">		margin: 0;</span></span><br><span class="line"><span class="string">		padding: 0;</span></span><br><span class="line"><span class="string">		border: 0;</span></span><br><span class="line"><span class="string">		font-size: 100%;</span></span><br><span class="line"><span class="string">		font: inherit;</span></span><br><span class="line"><span class="string">		vertical-align: baseline;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-在src目录下创建common文件，文件夹下再创建一个header文件，在其下创建一个index-js"><a href="#3-在src目录下创建common文件，文件夹下再创建一个header文件，在其下创建一个index-js" class="headerlink" title="3.在src目录下创建common文件，文件夹下再创建一个header文件，在其下创建一个index.js"></a><strong>3.在src目录下创建common文件，文件夹下再创建一个header文件，在其下创建一个index.js</strong></h3><p>header文件用于编写项目的Header组件，之所以在外包裹一个common文件是因为Heade组件是所有页面共享的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; </span><br><span class="line">    HeaderWrapper,</span><br><span class="line">    Logo,</span><br><span class="line">    Nav,</span><br><span class="line">    NavItem,</span><br><span class="line">    NavSearch,</span><br><span class="line">    Addition,</span><br><span class="line">    Button</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'./style'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Header</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123; </span><br><span class="line">        <span class="keyword">return</span> ( </span><br><span class="line">        &lt;HeaderWrapper&gt;</span><br><span class="line">            &lt;Logo/&gt;</span><br><span class="line">            &lt;Nav&gt;</span><br><span class="line">                &lt;NavItem className=<span class="string">'left active'</span>&gt;首页&lt;<span class="regexp">/NavItem&gt;</span></span><br><span class="line"><span class="regexp">                &lt;NavItem className='left'&gt;下载APP&lt;/</span>NavItem&gt;</span><br><span class="line">                &lt;NavItem className=<span class="string">'right'</span>&gt;登陆&lt;<span class="regexp">/NavItem&gt;</span></span><br><span class="line"><span class="regexp">                &lt;NavItem className='right'&gt;Aa&lt;/</span>NavItem&gt;</span><br><span class="line">                &lt;NavSearch&gt;&lt;<span class="regexp">/NavSearch&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Nav&gt;</span><br><span class="line">            &lt;Addition&gt;</span><br><span class="line">                &lt;Button className=<span class="string">'writing'</span>&gt;写文章&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">                &lt;Button className='reg'&gt;注册&lt;/</span>Button&gt;</span><br><span class="line">            &lt;<span class="regexp">/Addition&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>HeaderWrapper&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Header;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-在header文件夹下创建一个style-js文件，编写Header组件的css样式"><a href="#4-在header文件夹下创建一个style-js文件，编写Header组件的css样式" class="headerlink" title="4.在header文件夹下创建一个style.js文件，编写Header组件的css样式"></a><strong>4.在header文件夹下创建一个style.js文件，编写Header组件的css样式</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> HeaderWrapper = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">	z-index: 1;</span></span><br><span class="line"><span class="string">	position: relative;</span></span><br><span class="line"><span class="string">	height: 56px;</span></span><br><span class="line"><span class="string">	border-bottom: 1px solid #f0f0f0;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Logo = styled.a.attrs(&#123;</span><br><span class="line">	href:<span class="string">'/'</span></span><br><span class="line">&#125;)<span class="string">`</span></span><br><span class="line"><span class="string">	position: absolute;</span></span><br><span class="line"><span class="string">	top: 0;</span></span><br><span class="line"><span class="string">	left: 0;</span></span><br><span class="line"><span class="string">	display: block;</span></span><br><span class="line"><span class="string">	width: 100px;</span></span><br><span class="line"><span class="string">	height: 56px;</span></span><br><span class="line"><span class="string">	background: url(<span class="subst">$&#123;logoPic&#125;</span>);</span></span><br><span class="line"><span class="string">	background-size: contain;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Nav = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">	width: 960px;</span></span><br><span class="line"><span class="string">	height: 100%;</span></span><br><span class="line"><span class="string">	padding-right: 70px;</span></span><br><span class="line"><span class="string">	box-sizing: border-box;</span></span><br><span class="line"><span class="string">	margin: 0 auto;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> NavItem = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">	line-height: 56px;</span></span><br><span class="line"><span class="string">	padding: 0 15px;</span></span><br><span class="line"><span class="string">	font-size: 17px;</span></span><br><span class="line"><span class="string">	color: #333;</span></span><br><span class="line"><span class="string">	&amp;.left &#123;</span></span><br><span class="line"><span class="string">		float: left;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	&amp;.right &#123;</span></span><br><span class="line"><span class="string">		float: right;</span></span><br><span class="line"><span class="string">		color: #969696;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	&amp;.active &#123;</span></span><br><span class="line"><span class="string">		color: #ea6f5a;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> NavSearch = styled.input.attrs(&#123;</span><br><span class="line">	placeholder: <span class="string">'搜索'</span></span><br><span class="line">&#125;)<span class="string">`</span></span><br><span class="line"><span class="string">	width: 160px;</span></span><br><span class="line"><span class="string">	height: 38px;</span></span><br><span class="line"><span class="string">	padding: 0 30px 0 20px;</span></span><br><span class="line"><span class="string">	margin-top: 9px;</span></span><br><span class="line"><span class="string">	margin-left: 20px;</span></span><br><span class="line"><span class="string">	box-sizing: border-box;</span></span><br><span class="line"><span class="string">	border: none;</span></span><br><span class="line"><span class="string">	outline: none;</span></span><br><span class="line"><span class="string">	border-radius: 19px;</span></span><br><span class="line"><span class="string">	background: #eee;</span></span><br><span class="line"><span class="string">	font-size: 14px;</span></span><br><span class="line"><span class="string">	color: #666;</span></span><br><span class="line"><span class="string">	&amp;::placeholder &#123;</span></span><br><span class="line"><span class="string">		color: #999;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	&amp;.focused &#123;</span></span><br><span class="line"><span class="string">		width: 240px;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	&amp;.slide-enter &#123;</span></span><br><span class="line"><span class="string">		transition: all .2s ease-out;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	&amp;.slide-enter-active &#123;</span></span><br><span class="line"><span class="string">		width: 240px;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	&amp;.slide-exit &#123;</span></span><br><span class="line"><span class="string">		transition: all .2s ease-out;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	&amp;.slide-exit-active &#123;</span></span><br><span class="line"><span class="string">		width: 160px;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Addition = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">	position: absolute;</span></span><br><span class="line"><span class="string">	right: 0;</span></span><br><span class="line"><span class="string">	top: 0;</span></span><br><span class="line"><span class="string">	height: 56px;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Button = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">	float: right;</span></span><br><span class="line"><span class="string">	margin-top: 9px;</span></span><br><span class="line"><span class="string">	margin-right: 20px;</span></span><br><span class="line"><span class="string">	padding: 0 20px;</span></span><br><span class="line"><span class="string">	line-height: 38px;</span></span><br><span class="line"><span class="string">	border-radius: 19px;</span></span><br><span class="line"><span class="string">	border: 1px solid #ec6149;</span></span><br><span class="line"><span class="string">	font-siz: 14px;</span></span><br><span class="line"><span class="string">	&amp;.reg &#123;</span></span><br><span class="line"><span class="string">		color: #ec6149;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	&amp;.writting &#123;</span></span><br><span class="line"><span class="string">		color: #fff;</span></span><br><span class="line"><span class="string">		background: #ec6149;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-使用iconfont添加图标"><a href="#5-使用iconfont添加图标" class="headerlink" title="5.使用iconfont添加图标"></a><strong>5.使用iconfont添加图标</strong></h3><p>a.在iconfont官网挑选好需要的图标并添加至购物车</p>
+<p>b.将其添加入你的项目并下载至本地，删除不需要的文件</p>
+<p>c.在statics文件下创建iconfont文件，将所需文件放入该文件夹</p>
+<p>d.将iconfont.css文件改为js文件的全局样式格式，在主组件中引入</p>
+<p><strong>注意：更改iconfont.js中的url路径为正确路径,在index.js中 用i标签引入iconfont图标</strong></p>
+<h3 id="6-头部搜索框动画效果实现"><a href="#6-头部搜索框动画效果实现" class="headerlink" title="6.头部搜索框动画效果实现"></a><strong>6.头部搜索框动画效果实现</strong></h3><p><strong>在NavSearch组件中绑定onFocus和onBlur事件</strong></p>
+<p>为focused中参数的变换写不同的css样式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">handleInputFocus()&#123;</span><br><span class="line">     <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">         focused:<span class="literal">true</span></span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"> handleInputBlur()&#123;</span><br><span class="line">     <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">         focused:<span class="literal">false</span></span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-CSSTransition动画效果实现"><a href="#7-CSSTransition动画效果实现" class="headerlink" title="7.CSSTransition动画效果实现"></a><strong>7.CSSTransition动画效果实现</strong></h3><p><strong>安装react-transition-group</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-transition-group</span><br></pre></td></tr></table></figure>
+
+<p><strong>从react-transition-group引入CSSTransition后，在NavSearch外套一层CSSTransition</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;SearchWrapper&gt;</span><br><span class="line">               &lt;CSSTransition</span><br><span class="line">                   <span class="keyword">in</span>=&#123;<span class="keyword">this</span>.state.focused&#125;</span><br><span class="line">                   timeout=&#123;<span class="number">200</span>&#125;</span><br><span class="line">                   classNames=<span class="string">"slide"</span></span><br><span class="line">                   &gt;</span><br><span class="line">                       &lt;NavSearch className=&#123;<span class="keyword">this</span>.state.focused ? <span class="string">'focused'</span>:<span class="string">''</span>&#125;</span><br><span class="line">                       onFocus = &#123;<span class="keyword">this</span>.handleInputFocus&#125;</span><br><span class="line">                       onBlur = &#123; <span class="keyword">this</span>.handleInputBlur &#125;</span><br><span class="line">                       &gt;&lt;<span class="regexp">/NavSearch&gt;</span></span><br><span class="line"><span class="regexp">               &lt;/</span>CSSTransition&gt;</span><br><span class="line">                       &lt;i className=&#123;this.state.focused ? 'focused iconfont':'iconfont'&#125;&gt;&amp;#xe699;&lt;/i&gt;</span><br><span class="line">               &lt;<span class="regexp">/SearchWrapper&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-React-Redux进行应用数据的管理"><a href="#8-React-Redux进行应用数据的管理" class="headerlink" title="8. React-Redux进行应用数据的管理"></a><strong>8. React-Redux进行应用数据的管理</strong></h3><p><strong>安装redux和react-redux</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add redux</span><br><span class="line">yarn add react-redux</span><br></pre></td></tr></table></figure>
+
+<p><strong>在src目录下创建store文件夹，其下创建index.js和reducer.js文件</strong></p>
+<p>index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+
+<p>reducer.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultState=&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (state=defaultState,action)=&gt;&#123;</span><br><span class="line">    <span class="keyword">return</span> state;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在主组件引入store中的index.js和react-redux中的Provider组件，并将Provider和store建立联系</strong></p>
+<p>这样，被Provider包裹的Header组件可以使用store来管理数据</p>
+<p><strong>将原本export的Header写成connect，其中有两个形参mapStateToProps、mapDispatchToProps</strong></p>
+<p>mapStateToProps：将State映射到Props中</p>
+<p>mapDispatchToProps：将Dispatch映射到Props中</p>
+<p><strong>更新store数据的流程如下：</strong></p>
+<p>1.创建action，action是一个对象，其中有一个type属性</p>
+<p>2.派发action</p>
+<p>3.store接受action传来的state送到reducer中</p>
+<p>4.reducer返回一个新的state</p>
+<h2 id="9-使用combineReducers完成对数据的拆分管理"><a href="#9-使用combineReducers完成对数据的拆分管理" class="headerlink" title="9.使用combineReducers完成对数据的拆分管理"></a>9.使用combineReducers完成对数据的拆分管理</h2><p>由于所有的数据都放在主store下进行存放，当组件多的时候，store中代码会非常冗长，因此可以在Header组件目录下创建store对Header中的数据专门管理，而原本的reducer目录中只需要对拆分的reducer进行引用和export即可</p>
+<p>src/store/reducer.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; combineReducers &#125;<span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">import</span> &#123; reducer <span class="keyword">as</span> headerReducer&#125; <span class="keyword">from</span> <span class="string">'../common/header/store'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reducer = combineReducers(&#123;</span><br><span class="line">    header:headerReducer</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> reducer;</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-actionCreactors与constants的拆分"><a href="#10-actionCreactors与constants的拆分" class="headerlink" title="10.actionCreactors与constants的拆分"></a>10.actionCreactors与constants的拆分</h2><p>在index.js中对action进行定义时，action应该由actionCreators来创建，并且action.type不应是应该是字符串，而应该是一个常量</p>
+<p>在store目录下创建一个actionCreators文件夹，里面存放的是函数，分别是对不同action的创建</p>
+<p>之后我们要对index.js下action的派发进行重新改写</p>
+<p>同时，在store下创建一个constants文件夹，里面暴露的是action的名称，将其定义为常量</p>
+<p>为了方便管理，我们在store下的index.js中，将actionCreators和constants都暴露出去，之后我们在store外的index.js中只需要通过./store路径即可引入所以我们需要的文件</p>
+<h2 id="11-使用Immutable-js来管理store中的数据"><a href="#11-使用Immutable-js来管理store中的数据" class="headerlink" title="11.使用Immutable.js来管理store中的数据"></a>11.使用Immutable.js来管理store中的数据</h2><p>由于返回到reducer中的state不可以进行更改，只能够返回一个新的state</p>
+<p>为了避免对reducer中的state产生修改操作，可以使用Immutable工具将state转换成一个Immutable对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add immutable.js</span><br></pre></td></tr></table></figure>
+
+<p>使用immutable来管理数据之后需要用immutable中的get,set方法来获取和改变state的值</p>
+<p>以reducer.js举例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> constants <span class="keyword">from</span> <span class="string">'./constants'</span></span><br><span class="line"><span class="keyword">import</span> &#123; fromJS &#125; <span class="keyword">from</span> <span class="string">'immutable'</span></span><br><span class="line"><span class="keyword">const</span> defaultState=fromJS(&#123;</span><br><span class="line">    focused:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (state=defaultState,action)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(action.type===constants.SEARCH_FOCUS)</span><br><span class="line">    <span class="keyword">return</span> state.set(<span class="string">'focused'</span>,<span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">if</span>(action.type===constants.SEARCH_BLUR)</span><br><span class="line">    <span class="keyword">return</span> state.set(<span class="string">'focused'</span>,<span class="literal">false</span>)</span><br><span class="line">    <span class="keyword">return</span> state;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="12-使用redux-immutable统一数据格式"><a href="#12-使用redux-immutable统一数据格式" class="headerlink" title="12.使用redux-immutable统一数据格式"></a>12.使用redux-immutable统一数据格式</h2><p>在store下的index.js中，对于state中数据的获取是通过以下方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mapStateToProps=<span class="function">(<span class="params">state</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">        focused:state.header.get(<span class="string">'focused'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，state是一个Js对象，state.header是一个immutable对象，这样获取state的形式不太方便</p>
+<p>所以我们要将state也定义为一个immutable对象，而要做到这一点，首先要知道state是从哪里来的</p>
+<p>其实，state是在我们主reducer中创建的</p>
+<p>此时，我们引入redux-immutable来统一数据格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add redux-immutable</span><br></pre></td></tr></table></figure>
+
+<p>将引入redux改为引入redux-immutable</p>
+<p>所以我们可以这样获取state中的数据:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">focused:state.getIn([<span class="string">'header'</span>,<span class="string">'focused'</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="13-Ajax获取推荐数据"><a href="#13-Ajax获取推荐数据" class="headerlink" title="13.Ajax获取推荐数据"></a>13.Ajax获取推荐数据</h2><p><strong>将Header变为类组件</strong></p>
+<p>由于我们需要不断往无状态组件Header中写东西，这样会导致Header组件很庞大，无状态组件会不好管理</p>
+<p>首先通过解构引入Component，再将props换为this.props，将getListArea写到render中</p>
+<p><strong>用Ajax获取推荐数据</strong></p>
+<p>我们一般不会将Ajax请求写在组件内，而是写在actions里,在这个项目里，我们统一使用redux-thunk，将异步操作统一放在actions里。redux-thunk是redux中的中间件，它可以让我们在actions内写函数</p>
+<p>先安装redux-thunk</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add redux-thunk</span><br></pre></td></tr></table></figure>
+
+<p>中间件是action和store之间，是对dispatch方法的升级，因此我们需要在创建store的目录下，即store下的index.js中引入redux-thunk，同时从redux中引入applyMiddleeware</p>
+<p>主store下的index.js如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore,compose,applyMiddleware &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span>;</span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span></span><br><span class="line"><span class="keyword">const</span> composeEnhancers = <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;</span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer,composeEnhancers(</span><br><span class="line">    applyMiddleware(thunk)</span><br><span class="line">))</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+
+<p><strong>在mapDispatchToProps下的handleInputFocus下派发action</strong></p>
+<p><strong>在actionCreators里定义action:</strong>由于redux-thunk的存在，让我们可以在action中return一个函数，在函数中利用ajax请求</p>
+<p><strong>安装axios并引入</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add axios</span><br></pre></td></tr></table></figure>
+
+<p><strong>和后端定义接口，我们在public/api下写一个json文件来模拟接口</strong></p>
+<p><strong>在actionCreators.js创建action并请求数据</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const changeList &#x3D; (data)&#x3D;&gt;(&#123;</span><br><span class="line">    type:constants.CHANGE_LIST,</span><br><span class="line">    data:</span><br><span class="line">&#125;);</span><br><span class="line">export const getList&#x3D;()&#x3D;&gt;&#123;</span><br><span class="line">    return(dispatch)&#x3D;&gt;&#123;</span><br><span class="line">        axios.get(&#39;.&#x2F;api&#x2F;headerList.json&#39;).then((res)&#x3D;&gt;&#123;</span><br><span class="line">            const data&#x3D;res.data;</span><br><span class="line">            dispatch(changeList(data.data))</span><br><span class="line">        &#125;).catch(()&#x3D;&gt;&#123;</span><br><span class="line">            console.log(&#39;error&#39;);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在constants中定义action常量</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> CHANGE_LIST = <span class="string">'header/CHANGE_LIST'</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>reducer中修改action.data</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(action.type===constants.CHANGE_LIST)</span><br><span class="line"><span class="keyword">return</span> state.set(<span class="string">'list'</span>,action.data)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>这时我们的代码其实是有问题的，因为list是之前定义的一个immutable数组，而action.data是一个json的普通数组，这样直接修改室友问题的。因此我们需要在action.data中将传来的普通数组修改为immutable数组</p>
+<p><strong>在actionCreators.js中引入immutable，同时将data修改为immutable数组</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:fromJS(data)</span><br></pre></td></tr></table></figure>
+
+<p><strong>获取到数据后，将原本的SearchInfoItem进行修改</strong></p>
+<p>要从store中取数据先要去mapStateToProps中获取数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;SearchInfoList&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">this</span>.props.list.map(<span class="function">(<span class="params">item</span>)=&gt;</span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">SearchInfoItem</span> <span class="attr">key</span>=<span class="string">&#123;item&#125;</span>&gt;</span> &#123;item&#125; <span class="tag">&lt;/<span class="name">SearchInfoItem</span>&gt;</span></span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">&lt;<span class="regexp">/SearchInfoList&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="14-热门搜索换页功能实现"><a href="#14-热门搜索换页功能实现" class="headerlink" title="14. 热门搜索换页功能实现"></a>14. 热门搜索换页功能实现</h2><p><strong>在store中增加page、totalPage属性：</strong>将一页定义为10个元素</p>
+<p><strong>在getListArea中循环page中的内容</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pageList=[];</span><br><span class="line">        <span class="keyword">const</span> newList = list.toJS();</span><br><span class="line">        <span class="keyword">if</span>(newList.length)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = (page<span class="number">-1</span>) * <span class="number">10</span>; i &lt; page * <span class="number">10</span>; i++) &#123;</span><br><span class="line">            pageList.push(</span><br><span class="line">                &lt;SearchInfoItem key=&#123;newList[i]&#125;&gt;&#123;newList[i]&#125;&lt;<span class="regexp">/SearchInfoItem&gt;</span></span><br><span class="line"><span class="regexp">            )</span></span><br><span class="line"><span class="regexp">            &#125;</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>为SearchInfo绑定 onMouseEnter和onMouseLeave事件</strong></p>
+<p><strong>为SearchInfoSwitch绑定onClick事件</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;SearchInfoSwitch onClick=&#123;()=&gt;handleChangePage(page,totalPage)&#125;&gt;换一批&lt;<span class="regexp">/SearchInfoSwitch&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">handleChangePage(page,totalPage)&#123;</span><br><span class="line">            <span class="keyword">if</span>(page&lt;totalPage)&#123;</span><br><span class="line">            dispatch(actionCreators.changePage(page+<span class="number">1</span>))</span><br><span class="line">            &#125;<span class="keyword">else</span> dispatch(actionCreators.changePage(<span class="number">1</span>))</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-Home组件开发"><a href="#2-Home组件开发" class="headerlink" title="2.Home组件开发"></a>2.Home组件开发</h1><h2 id="1-React路由"><a href="#1-React路由" class="headerlink" title="1.React路由"></a>1.React路由</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserRouter, Route &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line">&lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">                &lt;GlobalStyle/&gt;</span><br><span class="line">                &lt;BrowserRouter&gt;</span><br><span class="line">                    &lt;div&gt;</span><br><span class="line">                        &lt;Header/&gt;</span><br><span class="line">                        &lt;Route path=<span class="string">'/'</span> exact component=&#123;Home&#125; &gt;&lt;<span class="regexp">/Route&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;Route path='/</span>detail<span class="string">' exact component=&#123;Detail&#125;&gt;&lt;/Route&gt;</span></span><br><span class="line"><span class="string">                    &lt;/div&gt;</span></span><br><span class="line"><span class="string">                &lt;/BrowserRouter&gt;</span></span><br><span class="line"><span class="string">            &lt;/Provider&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-首页组件拆分"><a href="#2-首页组件拆分" class="headerlink" title="2.首页组件拆分"></a>2.首页组件拆分</h2><p><strong>首页的style.js的创建</strong></p>
+<p><strong>将首页分为多个组件</strong></p>
+<p>在home下创建components文件，其中放入拆分的组件</p>
+<p>在home下的index.js中导入这些组件</p>
+<h2 id="3-首页专题区"><a href="#3-首页专题区" class="headerlink" title="3.首页专题区"></a>3.首页专题区</h2><p><strong>reducer组件创建</strong></p>
+<p>在home文件夹下创建store文件夹用于存放home中的数据</p>
+<p>在home文件夹中创建index.js和reducer.js，其中index用于引入reducer并暴露出去，用于减少层级目录</p>
+<p>reducer中存放topicList数据</p>
+<p><strong>在主reducer中引入</strong></p>
+<p>在主reducer文件中引入该路径下的小reducer并暴露</p>
+<p><strong>使用mapState对store中数据进行引用</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; TopicItem,TopicWrapper&#125; <span class="keyword">from</span> <span class="string">'../style'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Topic</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123; </span><br><span class="line">        <span class="keyword">const</span> &#123; list &#125;=<span class="keyword">this</span>.props</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;TopicWrapper&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    list.map(<span class="function">(<span class="params">item</span>)=&gt;</span>(</span><br><span class="line">                        &lt;TopicItem key=&#123;item.get(<span class="string">'id'</span>)&#125;&gt;</span><br><span class="line">                            &lt;img className=<span class="string">'topic-pic'</span></span><br><span class="line">                            src=&#123;item.get(<span class="string">'imgUrl'</span>)&#125;</span><br><span class="line">                            /&gt;</span><br><span class="line">                            &#123;item.get(<span class="string">'title'</span>)&#125;</span><br><span class="line">                        &lt;<span class="regexp">/TopicItem&gt;)</span></span><br><span class="line"><span class="regexp">                    )</span></span><br><span class="line"><span class="regexp">                &#125;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>TopicWrapper&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> mapState=<span class="function">(<span class="params">state</span>)=&gt;</span>(&#123;</span><br><span class="line">    list:state.getIn([<span class="string">'home'</span>,<span class="string">'topicList'</span>])</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapState,<span class="literal">null</span>)(Topic);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="夏天。 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="夏天。 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%AE%80%E4%B9%A6%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag"># 简书前端开发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/04/Redux%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" rel="next" title="Redux的创建和工作流程">
+                <i class="fa fa-chevron-left"></i> Redux的创建和工作流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/10/Vue%E5%8E%BB%E5%93%AA%E5%84%BF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/" rel="prev" title="Vue去哪儿项目开发">
+                Vue去哪儿项目开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <div class="disqus-loading">
+          <strong>Disqus 加载中...</strong>
+          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
+
+
+  
+
+    
+      <script type="text/javascript">
+        if (disqus_config) {
+          var disqus_config = function () {
+            this.page.url = 'http://yoursite.com/2020/04/19/%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/';
+            this.page.identifier = '2020/04/19/简书项目开发笔记/';
+            this.page.title = '简书项目开发笔记';
+          };
+          if (window.DISQUS) {
+            $('.disqus-loading').remove();
+            window.DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.url = 'http://yoursite.com/2020/04/19/%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/';
+                this.page.identifier = '2020/04/19/简书项目开发笔记/';
+                this.page.title = '简书项目开发笔记';
+              }
+            });
+          }
+        }
+        else {
+          var disqus_config = function () {
+            this.page.url = 'http://yoursite.com/2020/04/19/%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/';
+            this.page.identifier = '2020/04/19/简书项目开发笔记/';
+            this.page.title = '简书项目开发笔记';
+          };
+          var d = document, s = d.createElement('script');
+          s.src = 'https://diygod-me.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', '' + +new Date());
+          (d.head || d.body).appendChild(s);
+        }
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/card.jpg"
+                alt="夏天。" />
+            
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">网红</span>DIYgod</p>
+              <p class="site-description motion-element" itemprop="description">你能抓到我么？</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DIYgod" target="_blank" title="GitHub" data-balloon="GitHub" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/DIYgod" target="_blank" title="Twitter" data-balloon="Twitter" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="/images/qq-g.jpg" target="_blank" title="QQ 群" data-balloon="QQ 群" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-qq"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://t.me/awesomeDIYgod" target="_blank" title="Telegram Channel" data-balloon="Telegram Channel" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-telegram"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.anotherhome.net/3163" target="_blank" title="更多" data-balloon="更多" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-more"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+            
+
+          </nav>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.png" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React简书开发实战笔记"><span class="nav-number">1.</span> <span class="nav-text">React简书开发实战笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Header组件开发"><span class="nav-number">1.1.</span> <span class="nav-text">1. Header组件开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在项目根目录下安装styled-component组件对CSS样式进行编写"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.在项目根目录下安装styled-component组件对CSS样式进行编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建style-js，引入以下全局样式清楚浏览器默认样式"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.创建style.js，引入以下全局样式清楚浏览器默认样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在src目录下创建common文件，文件夹下再创建一个header文件，在其下创建一个index-js"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.在src目录下创建common文件，文件夹下再创建一个header文件，在其下创建一个index.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-在header文件夹下创建一个style-js文件，编写Header组件的css样式"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.在header文件夹下创建一个style.js文件，编写Header组件的css样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用iconfont添加图标"><span class="nav-number">1.1.5.</span> <span class="nav-text">5.使用iconfont添加图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-头部搜索框动画效果实现"><span class="nav-number">1.1.6.</span> <span class="nav-text">6.头部搜索框动画效果实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-CSSTransition动画效果实现"><span class="nav-number">1.1.7.</span> <span class="nav-text">7.CSSTransition动画效果实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-React-Redux进行应用数据的管理"><span class="nav-number">1.1.8.</span> <span class="nav-text">8. React-Redux进行应用数据的管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-使用combineReducers完成对数据的拆分管理"><span class="nav-number">1.2.</span> <span class="nav-text">9.使用combineReducers完成对数据的拆分管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-actionCreactors与constants的拆分"><span class="nav-number">1.3.</span> <span class="nav-text">10.actionCreactors与constants的拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-使用Immutable-js来管理store中的数据"><span class="nav-number">1.4.</span> <span class="nav-text">11.使用Immutable.js来管理store中的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-使用redux-immutable统一数据格式"><span class="nav-number">1.5.</span> <span class="nav-text">12.使用redux-immutable统一数据格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Ajax获取推荐数据"><span class="nav-number">1.6.</span> <span class="nav-text">13.Ajax获取推荐数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-热门搜索换页功能实现"><span class="nav-number">1.7.</span> <span class="nav-text">14. 热门搜索换页功能实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Home组件开发"><span class="nav-number">2.</span> <span class="nav-text">2.Home组件开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-React路由"><span class="nav-number">2.1.</span> <span class="nav-text">1.React路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-首页组件拆分"><span class="nav-number">2.2.</span> <span class="nav-text">2.首页组件拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-首页专题区"><span class="nav-number">2.3.</span> <span class="nav-text">3.首页专题区</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image"></div>
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+<p>custom text</p>
+
+<p>© <span itemprop="copyrightYear">2020</span> 吴天是个大傻逼.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.4.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+    xxxx.
+</p>
+<p>Made with <i class="fa fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">夏天。</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+    <canvas id="live2d" width="150" height="400" class="live2d"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.4"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

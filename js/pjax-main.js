@@ -1,1 +1,0 @@
-sagiri.affix();
