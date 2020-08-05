@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.0.0-rc.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.0.0-rc.0" type="image/png" sizes="32x32"><meta name="description" content="JavaScript之this                           1. 全局上下文       全局上下文默认this指向window, 严格模式下指向undefined。                     2. 直接调用函数       比如: 1234567let obj &#x3D; &amp;#123;  a: function() &amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript之this">
+<meta property="og:url" content="http://yoursite.com/2020/06/29/JavaScript%E4%B9%8Bthis/index.html">
+<meta property="og:site_name" content="吴天是个大傻逼">
+<meta property="og:description" content="JavaScript之this                           1. 全局上下文       全局上下文默认this指向window, 严格模式下指向undefined。                     2. 直接调用函数       比如: 1234567let obj &#x3D; &amp;#123;  a: function() &amp;#123">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-28T16:44:41.372Z">
+<meta property="article:modified_time" content="2020-06-28T16:44:41.372Z">
+<meta property="article:author" content="夏天。">
+<meta name="twitter:card" content="summary"><meta name="keywords" content="夏天。, 吴天是个大傻逼"><meta name="description" content=""><title>JavaScript之this</title><link ref="canonical" href="http://yoursite.com/2020/06/29/JavaScript%E4%B9%8Bthis/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.0.0-rc.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">吴天是个大傻逼</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">JavaScript之this</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-06-29</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-06-29</span></span></div></header><div class="post-body">
+        <h1 id="JavaScript之this"   >
+          <a href="#JavaScript之this" class="heading-link"><i class="fas fa-link"></i></a>JavaScript之this</h1>
+      
+        <h1 id="1-全局上下文"   >
+          <a href="#1-全局上下文" class="heading-link"><i class="fas fa-link"></i></a>1. 全局上下文</h1>
+      <p>全局上下文默认this指向window, 严格模式下指向undefined。</p>
+
+        <h1 id="2-直接调用函数"   >
+          <a href="#2-直接调用函数" class="heading-link"><i class="fas fa-link"></i></a>2. 直接调用函数</h1>
+      <p>比如:</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> func = obj.a;</span><br><span class="line">func();</span><br></pre></td></tr></table></div></figure>
+
+<p>这种情况是直接调用。this相当于全局上下文的情况。</p>
+<p><strong>自执行函数中的this是window或undefined</strong></p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);<span class="comment">//==&gt;window</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="3-对象-方法的形式调用"   >
+          <a href="#3-对象-方法的形式调用" class="heading-link"><i class="fas fa-link"></i></a>3. 对象.方法的形式调用</h1>
+      <p>还是刚刚的例子，我如果这样写:</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.a();</span><br></pre></td></tr></table></div></figure>
+
+<p>这就是<code>对象.方法</code>的情况，this指向这个对象</p>
+
+        <h1 id="4-DOM事件绑定"   >
+          <a href="#4-DOM事件绑定" class="heading-link"><i class="fas fa-link"></i></a>4. DOM事件绑定</h1>
+      <p>onclick和addEventerListener中 this 默认指向绑定事件的元素。</p>
+<p>IE比较奇异，使用attachEvent，里面的this默认指向window。</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// btn</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="5-new-构造函数"   >
+          <a href="#5-new-构造函数" class="heading-link"><i class="fas fa-link"></i></a>5. new+构造函数</h1>
+      <p>此时构造函数中的this指向实例对象。</p>
+
+        <h1 id="6-箭头函数"   >
+          <a href="#6-箭头函数" class="heading-link"><i class="fas fa-link"></i></a>6. 箭头函数</h1>
+      <p>箭头函数没有this, 因此也不能绑定。里面的this会指向当前最近的非箭头函数的this，找不到就是window(严格模式是undefined)。比如:</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">do</span> = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">do</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.a(); <span class="comment">// 找到最近的非箭头函数a，a现在绑定着obj, 因此箭头函数中的this是obj</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="7-回调函数"   >
+          <a href="#7-回调函数" class="heading-link"><i class="fas fa-link"></i></a>7.回调函数</h2>
+      <p>回调函数中的this一般是window</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ary = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">ary.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//================================//</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;,<span class="number">1000</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment">//================================//</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">m</span>)</span>&#123;</span><br><span class="line">    m()</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="8-call、apply、bind"   >
+          <a href="#8-call、apply、bind" class="heading-link"><i class="fas fa-link"></i></a>8.call、apply、bind</h1>
+      
+        <h2 id="（1）call"   >
+          <a href="#（1）call" class="heading-link"><i class="fas fa-link"></i></a>（1）call</h2>
+      
+        <h3 id="语法："   >
+          <a href="#语法：" class="heading-link"><i class="fas fa-link"></i></a>语法：</h3>
+      <ul>
+<li>函数.call(context,params1,params2….)</li>
+</ul>
+
+        <h3 id="定义："   >
+          <a href="#定义：" class="heading-link"><i class="fas fa-link"></i></a>定义：</h3>
+      <ul>
+<li>函数基于原型链找到<code>Function.prototype.cal</code>l这个方法，并且把它执行，在<code>call</code>方法执行的时候改变里面的this关键字</li>
+</ul>
+
+        <h3 id="作用："   >
+          <a href="#作用：" class="heading-link"><i class="fas fa-link"></i></a>作用：</h3>
+      <ul>
+<li>让当前函数执行</li>
+<li>把函数中的<code>THIS</code>指向改为第一个传递给<code>CALL</code>的实参</li>
+<li>把传递给<code>CALL</code>其余的实参，当做参数信息传递给当前函数</li>
+</ul>
+
+        <h3 id="注意"   >
+          <a href="#注意" class="heading-link"><i class="fas fa-link"></i></a>注意:</h3>
+      <ul>
+<li><p>如果执行<code>CALL</code>一个实参都没有传递，非严格模式下是让函数中的<code>THIS</code>指向<code>WINDOW</code>，严格模式下指向的是<code>UNDEFINED</code></p>
+</li>
+<li><pre><code class="javascript">fn.call(<span class="literal">null</span>)<span class="comment">//=&gt;`this:window`</span>
+&lt;!--￼<span class="number">6</span>--&gt;
+</code></pre>
+</li>
+</ul>
+
+        <h2 id="（3）bind"   >
+          <a href="#（3）bind" class="heading-link"><i class="fas fa-link"></i></a>（3）bind</h2>
+      <blockquote>
+<p>和<code>call</code>/<code>apply</code>一样，也是用来改变函数中的<code>this</code>关键字的，只不过基于<code>bind</code>改变<code>this</code>，当前方法并没有被执行，类似于预先改变<code>this</code></p>
+</blockquote>
+
+        <h3 id="语法：-1"   >
+          <a href="#语法：-1" class="heading-link"><i class="fas fa-link"></i></a>语法：</h3>
+      <ul>
+<li>函数.bind(context,params1,….)</li>
+</ul>
+
+        <h3 id="区别："   >
+          <a href="#区别：" class="heading-link"><i class="fas fa-link"></i></a>区别：</h3>
+      <ul>
+<li><code>bind</code>是预处理<code>this</code>，他并不会让函数执行</li>
+<li><code>bind</code>方法的返回值是一个改变<code>this</code>之后的新函数</li>
+</ul>
+
+        <h3 id="作用：-1"   >
+          <a href="#作用：-1" class="heading-link"><i class="fas fa-link"></i></a>作用：</h3>
+      <ul>
+<li><p>把函数中的<code>THIS</code>指向通过预处理的方式改为第一个传递给<code>BIND</code>的实参</p>
+</li>
+<li><p>一般使用在绑定点击事件，不让函数立即执行时</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj=&#123;<span class="attr">name</span>:<span class="string">'OBJ'</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.onclick=fn; <span class="comment">//=&gt;当事件触发,fn中的this:BODY</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//=&gt;点击BODY，让FN中的THIS指向OBJ</span></span><br><span class="line"><span class="comment">//document.body.onclick=fn.call(obj); //=&gt;基于call/apply这样处理，不是把fn绑定给事件，而是把fn执行后的结果绑定给事件</span></span><br><span class="line"><span class="built_in">document</span>.body.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//this:BODY</span></span><br><span class="line">    fn.call(obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.onclick=fn.bind(obj);</span><br></pre></td></tr></table></div></figure>
+
+</li>
+</ul>
+
+        <h3 id="注意-1"   >
+          <a href="#注意-1" class="heading-link"><i class="fas fa-link"></i></a>注意:</h3>
+      <ul>
+<li>在<code>IE6~8</code>中不支持<code>bind</code>方法</li>
+<li>预先做啥事情的思想被称为“柯理化函数”</li>
+</ul>
+
+        <h3 id="优点："   >
+          <a href="#优点：" class="heading-link"><i class="fas fa-link"></i></a>优点：</h3>
+      <ul>
+<li><code>bind</code>的好处是：通过<code>bind</code>方法只是预先把<code>fn</code>中的<code>this</code>修改为<code>obj</code>，此时<code>fn</code>并没有执行呢，当点击事件触发才会执行<code>fn</code>（<code>call</code>/<code>apply</code>都是改变<code>this</code>的同时立即把方法执行）</li>
+</ul>
+
+        <h1 id="总结："   >
+          <a href="#总结：" class="heading-link"><i class="fas fa-link"></i></a>总结：</h1>
+      <p><strong>优先级: new  &gt; call、apply、bind  &gt; 对象.方法 &gt; 直接调用。</strong></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://yoursite.com">夏天。</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://yoursite.com/2020/06/29/JavaScript%E4%B9%8Bthis/">http://yoursite.com/2020/06/29/JavaScript%E4%B9%8Bthis/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/06/30/JavaScript%E4%B9%8B%E8%8A%82%E6%B5%81%E3%80%81%E9%98%B2%E6%8A%96/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">JavaScript之节流、防抖</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/06/28/JavaScript%E4%B8%ADArray.prototype.slice.call()%E7%9A%84%E7%90%86%E8%A7%A3/"><span class="paginator-prev__text">JavaScript中Array.prototype.slice.call()的理解</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript之this"><span class="toc-number">1.</span> <span class="toc-text">
+          JavaScript之this</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-全局上下文"><span class="toc-number">2.</span> <span class="toc-text">
+          1. 全局上下文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-直接调用函数"><span class="toc-number">3.</span> <span class="toc-text">
+          2. 直接调用函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-对象-方法的形式调用"><span class="toc-number">4.</span> <span class="toc-text">
+          3. 对象.方法的形式调用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-DOM事件绑定"><span class="toc-number">5.</span> <span class="toc-text">
+          4. DOM事件绑定</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-new-构造函数"><span class="toc-number">6.</span> <span class="toc-text">
+          5. new+构造函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-箭头函数"><span class="toc-number">7.</span> <span class="toc-text">
+          6. 箭头函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-回调函数"><span class="toc-number">7.1.</span> <span class="toc-text">
+          7.回调函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-call、apply、bind"><span class="toc-number">8.</span> <span class="toc-text">
+          8.call、apply、bind</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（1）call"><span class="toc-number">8.1.</span> <span class="toc-text">
+          （1）call</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法："><span class="toc-number">8.1.1.</span> <span class="toc-text">
+          语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义："><span class="toc-number">8.1.2.</span> <span class="toc-text">
+          定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用："><span class="toc-number">8.1.3.</span> <span class="toc-text">
+          作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">8.1.4.</span> <span class="toc-text">
+          注意:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（3）bind"><span class="toc-number">8.2.</span> <span class="toc-text">
+          （3）bind</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法：-1"><span class="toc-number">8.2.1.</span> <span class="toc-text">
+          语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#区别："><span class="toc-number">8.2.2.</span> <span class="toc-text">
+          区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用：-1"><span class="toc-number">8.2.3.</span> <span class="toc-text">
+          作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意-1"><span class="toc-number">8.2.4.</span> <span class="toc-text">
+          注意:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点："><span class="toc-number">8.2.5.</span> <span class="toc-text">
+          优点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结："><span class="toc-number">9.</span> <span class="toc-text">
+          总结：</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/1.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">keep running</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">30</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">15</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>夏天。</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v4.2.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.0.0-rc.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.0.0-rc.0"></script><script src="/js/stun-boot.js?v=2.0.0-rc.0"></script><script src="/js/scroll.js?v=2.0.0-rc.0"></script><script src="/js/header.js?v=2.0.0-rc.0"></script><script src="/js/sidebar.js?v=2.0.0-rc.0"></script></body></html>

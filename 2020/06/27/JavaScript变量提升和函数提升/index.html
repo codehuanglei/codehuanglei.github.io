@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.0.0-rc.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.0.0-rc.0" type="image/png" sizes="32x32"><meta name="description" content="JavaScript变量提升和函数提升                           一、变量提升       1.在JavaScript中用var声明的变量在创建阶段会被提升，JavaScript会在创建变量阶段为其分配内存空间，并且设置默认值为undefined，直至执行到赋值语句为其赋值为止。 2.在JavaScript中使用let（const）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript变量提升和函数提升">
+<meta property="og:url" content="http://yoursite.com/2020/06/27/JavaScript%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/index.html">
+<meta property="og:site_name" content="吴天是个大傻逼">
+<meta property="og:description" content="JavaScript变量提升和函数提升                           一、变量提升       1.在JavaScript中用var声明的变量在创建阶段会被提升，JavaScript会在创建变量阶段为其分配内存空间，并且设置默认值为undefined，直至执行到赋值语句为其赋值为止。 2.在JavaScript中使用let（const）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-27T14:48:33.968Z">
+<meta property="article:modified_time" content="2020-06-27T14:48:33.969Z">
+<meta property="article:author" content="夏天。">
+<meta name="twitter:card" content="summary"><meta name="keywords" content="夏天。, 吴天是个大傻逼"><meta name="description" content=""><title>JavaScript变量提升和函数提升</title><link ref="canonical" href="http://yoursite.com/2020/06/27/JavaScript%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.0.0-rc.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">吴天是个大傻逼</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">JavaScript变量提升和函数提升</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-06-27</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-06-27</span></span></div></header><div class="post-body">
+        <h1 id="JavaScript变量提升和函数提升"   >
+          <a href="#JavaScript变量提升和函数提升" class="heading-link"><i class="fas fa-link"></i></a>JavaScript变量提升和函数提升</h1>
+      
+        <h1 id="一、变量提升"   >
+          <a href="#一、变量提升" class="heading-link"><i class="fas fa-link"></i></a>一、变量提升</h1>
+      <p>1.在JavaScript中用var声明的变量在创建阶段会被提升，JavaScript会在创建变量阶段为其分配内存空间，并且设置默认值为<code>undefined</code>，直至执行到赋值语句为其赋值为止。</p>
+<p>2.在JavaScript中使用let（const）关键字声明的变量也存在变量提升，但是和var不同的是，初始化没有被提升。 在我们声明（初始化）它们之前，它们是不可访问的。 这被称为“暂时死区”。 当我们在声明变量之前尝试访问变量时，JavaScript会抛出一个<code>ReferenceError</code>。</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(name);</span><br><span class="line">  <span class="built_in">console</span>.log(age);</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"Lydia"</span>;</span><br><span class="line">  <span class="keyword">let</span> age = <span class="number">21</span>;</span><br><span class="line">&#125;</span><br><span class="line">sayHi();</span><br></pre></td></tr></table></div></figure>
+
+<p>该例中函数执行的结果为<code>undefined</code>和<code>ReferenceError</code></p>
+<p>该代码等价为：</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name;</span><br><span class="line">  <span class="keyword">let</span> age;</span><br><span class="line">  <span class="built_in">console</span>.log(name);<span class="comment">//undefined</span></span><br><span class="line">  <span class="built_in">console</span>.log(age);<span class="comment">//ReferenceError（不同的是，let的初始化并没有提升）</span></span><br><span class="line">  name = <span class="string">"Lydia"</span>;</span><br><span class="line">  age = <span class="number">21</span>;</span><br><span class="line">&#125;</span><br><span class="line">sayHi();</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'codelei'</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(name) <span class="comment">// Uncaught ReferenceError: name is not defined</span></span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">'code秘密花园'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>该例可以很好的体现let也存在变量提升，只是在它存在一个”暂时性死区”，在变量未初始化或赋值前不允许访问。</p>
+
+        <h1 id="二、函数提升"   >
+          <a href="#二、函数提升" class="heading-link"><i class="fas fa-link"></i></a>二、函数提升</h1>
+      <p>JavaScript中的函数也存在类似变量提升的现象。</p>
+<p><strong>两种函数声明方式：</strong></p>
+<p>1.函数声明式<code>function bar(){}</code></p>
+<p>2.函数字面量式<code>var foo = function(){}</code></p>
+<p>函数字面量式的声明和变量提升的结果是一样的，这个很好理解，只需要把function(){}当做foo的赋值即可。但是函数声明式的提升现象和变量提升略有不同。<strong>函数提升是整个代码块提升到它所在作用域的最开始执行</strong></p>
+<p>那么函数提升和变量提升的优先级是如何呢？</p>
+<p><strong>函数提升优先级比变量提升要高，且不会被变量声明覆盖，但是会被变量赋值覆盖。</strong></p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(foo);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"函数声明"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">"变量"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo);</span><br></pre></td></tr></table></div></figure>
+
+<p>代码等价于</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"函数声明"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> foo;</span><br><span class="line"><span class="built_in">console</span>.log(foo);  <span class="comment">//foo()&#123;console.log("函数声明")&#125;</span></span><br><span class="line">foo = <span class="string">"变量"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">//变量</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="三、总结"   >
+          <a href="#三、总结" class="heading-link"><i class="fas fa-link"></i></a>三、总结</h1>
+      <p>变量的赋值可以分为三个阶段：</p>
+<ul>
+<li>创建变量，在内存中开辟空间</li>
+<li>初始化变量，将变量初始化为<code>undefined</code></li>
+<li>真正赋值</li>
+</ul>
+<p>关于<code>let</code>、<code>var</code></p>
+<ul>
+<li><code>let</code> 的「创建」过程被提升了，但是初始化没有提升。</li>
+<li><code>var</code> 的「创建」和「初始化」都被提升了。</li>
+</ul>
+<p>关于函数提升，分为函数声明式和函数字面量式：</p>
+<ul>
+<li>函数字面量式等同于变量</li>
+<li>函数声明式则是将函数的整个代码提升，且优先级高于变量，同名变量的声明无法覆盖函数声明，但是会被赋值覆盖。</li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://yoursite.com">夏天。</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://yoursite.com/2020/06/27/JavaScript%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/">http://yoursite.com/2020/06/27/JavaScript%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/06/28/JavaScript%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">JavaScript原型与原型链</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/06/27/JavaScript%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><span class="paginator-prev__text">JavaScript之判断数据类型</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript变量提升和函数提升"><span class="toc-number">1.</span> <span class="toc-text">
+          JavaScript变量提升和函数提升</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、变量提升"><span class="toc-number">2.</span> <span class="toc-text">
+          一、变量提升</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、函数提升"><span class="toc-number">3.</span> <span class="toc-text">
+          二、函数提升</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、总结"><span class="toc-number">4.</span> <span class="toc-text">
+          三、总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/1.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">keep running</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">30</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">15</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>夏天。</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v4.2.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.0.0-rc.0</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.0.0-rc.0"></script><script src="/js/stun-boot.js?v=2.0.0-rc.0"></script><script src="/js/scroll.js?v=2.0.0-rc.0"></script><script src="/js/header.js?v=2.0.0-rc.0"></script><script src="/js/sidebar.js?v=2.0.0-rc.0"></script></body></html>
