@@ -121,7 +121,7 @@
 <meta property="og:description" content="JavaScript中Array.prototype.slice.call()的理解看到了一篇博客中讲到如何讲函数的arguments转化为数组，其中用到了Array.prototype.slice.call()方法，代码如下： 12345function sum(a, b) &amp;#123;  let args &#x3D; Array.prototype.slice.call(arguments);  co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-28T10:29:43.572Z">
-<meta property="article:modified_time" content="2020-06-28T11:08:53.097Z">
+<meta property="article:modified_time" content="2020-08-07T14:37:32.831Z">
 <meta property="article:author" content="夏天。">
 <meta name="twitter:card" content="summary">
 
@@ -432,6 +432,8 @@
       
         <h1 id="JavaScript中Array-prototype-slice-call-的理解"><a href="#JavaScript中Array-prototype-slice-call-的理解" class="headerlink" title="JavaScript中Array.prototype.slice.call()的理解"></a>JavaScript中Array.prototype.slice.call()的理解</h1><p>看到了一篇博客中讲到如何讲函数的arguments转化为数组，其中用到了<code>Array.prototype.slice.call()</code>方法，代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(args.reduce(<span class="function">(<span class="params">sum, cur</span>) =&gt;</span> sum + cur));<span class="comment">//args可以调用数组原生的方法啦</span></span><br><span class="line">&#125;</span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>);<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <p>对于<code>Array.prototype.slice.call(arguments)</code>如何实现对arguments的转化的，有点百思不得其解。看了很多相关资料，看到了一篇解释得还算不错的，故搬运过来记录一下。</p>
 <p>JavaScript中的<code>Array.prototype.slice.call(arguments)</code>能将有length属性的对象转换为数组(<strong>特别注意： 这个对象一定要有length属性</strong>). 但有一个例外，IE下的节点集合它不能转换(因为IE下的dom对象是以com对象的形式实现，js对象和com对象不能进行转换)</p>

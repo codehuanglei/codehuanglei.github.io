@@ -113,15 +113,15 @@
 
 
 
-<meta name="description" content="你真的理解闭包了吗闭包的定义：首先给闭包下一个定义 《你不知道的JavaScript》中的定义： 当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。 《JavaScript高级程序设计第三版》中的定义： 闭包是指有权访问另外一个函数作用域中的变量的函数 闭包产生的原因：作用域：ES5中存在两种作用域——全局作用域和函数作用域（eval,with,try-ca">
+<meta name="description" content="你真的理解闭包了吗闭包的定义：首先给闭包下一个定义 《你不知道的JavaScript》中的定义： 当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。 《JavaScript高级程序设计第三版》中的定义： 闭包是指有权访问另外一个函数作用域中的变量的函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你真的理解闭包了吗">
 <meta property="og:url" content="http://yoursite.com/2020/06/26/%E4%BD%A0%E7%9C%9F%E7%9A%84%E7%90%86%E8%A7%A3%E9%97%AD%E5%8C%85%E4%BA%86%E5%90%97/index.html">
 <meta property="og:site_name" content="吴天是个大傻逼">
-<meta property="og:description" content="你真的理解闭包了吗闭包的定义：首先给闭包下一个定义 《你不知道的JavaScript》中的定义： 当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。 《JavaScript高级程序设计第三版》中的定义： 闭包是指有权访问另外一个函数作用域中的变量的函数 闭包产生的原因：作用域：ES5中存在两种作用域——全局作用域和函数作用域（eval,with,try-ca">
+<meta property="og:description" content="你真的理解闭包了吗闭包的定义：首先给闭包下一个定义 《你不知道的JavaScript》中的定义： 当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。 《JavaScript高级程序设计第三版》中的定义： 闭包是指有权访问另外一个函数作用域中的变量的函数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-26T07:54:48.294Z">
-<meta property="article:modified_time" content="2020-06-27T03:35:04.504Z">
+<meta property="article:modified_time" content="2020-08-07T14:38:48.335Z">
 <meta property="article:author" content="夏天。">
 <meta name="twitter:card" content="summary">
 
@@ -435,6 +435,8 @@
 <p><strong>当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。</strong></p>
 <p>《JavaScript高级程序设计第三版》中的定义：</p>
 <p><strong>闭包是指有权访问另外一个函数作用域中的变量的函数</strong></p>
+<a id="more"></a>
+
 <h2 id="闭包产生的原因："><a href="#闭包产生的原因：" class="headerlink" title="闭包产生的原因："></a>闭包产生的原因：</h2><p><strong>作用域：</strong>ES5中存在两种作用域——全局作用域和函数作用域（eval,with,try-catch不在讨论范围内），ES6中新增了用let和const声明的块级作用域。</p>
 <p><strong>作用域链：</strong>每个子函数都会拷贝上级的作用域，形成一个作用域链，当访问一个变量时，解释器会首先在当前作用域查找标识符，如果没有找到，则会去父级作用域里查找，直到找到该变量的标识符，若找不到则会报错：<strong>ReferenceError:xxx is not defined</strong>,这就是作用域链。</p>
 <p>首先根据作用域链的概念我们可以知道，在正常情况下内层作用域是可以访问到外层作用域中的变量，而反过来外层作用域是无法访问内层作用域的局部变量的。但是出于种种原因，我们有时候需要在外层作用域访问到内层作用域的局部变量，此时我们就需要借助闭包来完成。</p>

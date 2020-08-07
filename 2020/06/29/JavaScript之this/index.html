@@ -113,15 +113,15 @@
 
 
 
-<meta name="description" content="JavaScript之this1. 全局上下文全局上下文默认this指向window, 严格模式下指向undefined。 2. 直接调用函数比如: 1234567let obj &#x3D; &amp;#123;  a: function() &amp;#123;    console.log(this);  &amp;#125;&amp;#125;let func &#x3D; obj.a;func();  这种情况是直接调用。this相当于全">
+<meta name="description" content="JavaScript之this1. 全局上下文全局上下文默认this指向window, 严格模式下指向undefined。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript之this">
 <meta property="og:url" content="http://yoursite.com/2020/06/29/JavaScript%E4%B9%8Bthis/index.html">
 <meta property="og:site_name" content="吴天是个大傻逼">
-<meta property="og:description" content="JavaScript之this1. 全局上下文全局上下文默认this指向window, 严格模式下指向undefined。 2. 直接调用函数比如: 1234567let obj &#x3D; &amp;#123;  a: function() &amp;#123;    console.log(this);  &amp;#125;&amp;#125;let func &#x3D; obj.a;func();  这种情况是直接调用。this相当于全">
+<meta property="og:description" content="JavaScript之this1. 全局上下文全局上下文默认this指向window, 严格模式下指向undefined。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-28T16:44:41.372Z">
-<meta property="article:modified_time" content="2020-06-28T16:44:41.372Z">
+<meta property="article:modified_time" content="2020-08-07T14:37:14.729Z">
 <meta property="article:author" content="夏天。">
 <meta name="twitter:card" content="summary">
 
@@ -431,6 +431,8 @@
 
       
         <h1 id="JavaScript之this"><a href="#JavaScript之this" class="headerlink" title="JavaScript之this"></a>JavaScript之this</h1><h1 id="1-全局上下文"><a href="#1-全局上下文" class="headerlink" title="1. 全局上下文"></a>1. 全局上下文</h1><p>全局上下文默认this指向window, 严格模式下指向undefined。</p>
+<a id="more"></a>
+
 <h1 id="2-直接调用函数"><a href="#2-直接调用函数" class="headerlink" title="2. 直接调用函数"></a>2. 直接调用函数</h1><p>比如:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> func = obj.a;</span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
 

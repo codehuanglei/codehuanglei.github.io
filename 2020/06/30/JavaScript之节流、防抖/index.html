@@ -113,19 +113,19 @@
 
 
 
-<meta name="description" content="JavaScript之节流、防抖防抖： 防抖函数 debounce 指的是某个函数在某段时间内，无论触发了多少次回调，都只执行最后一次。假如我们设置了一个等待时间 3 秒的函数，在这 3 秒内如果遇到函数调用请求就重新计时 3 秒，直至新的 3 秒内没有函数调用请求，此时执行函数，不然就以此类推重新计时。  123456789101112131415function debounce(fn) &amp;#">
+<meta name="description" content="JavaScript之节流、防抖防抖： 防抖函数 debounce 指的是某个函数在某段时间内，无论触发了多少次回调，都只执行最后一次。假如我们设置了一个等待时间 3 秒的函数，在这 3 秒内如果遇到函数调用请求就重新计时 3 秒，直至新的 3 秒内没有函数调用请求，此时执行函数，不然就以此类推重新计时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript之节流、防抖">
 <meta property="og:url" content="http://yoursite.com/2020/06/30/JavaScript%E4%B9%8B%E8%8A%82%E6%B5%81%E3%80%81%E9%98%B2%E6%8A%96/index.html">
 <meta property="og:site_name" content="吴天是个大傻逼">
-<meta property="og:description" content="JavaScript之节流、防抖防抖： 防抖函数 debounce 指的是某个函数在某段时间内，无论触发了多少次回调，都只执行最后一次。假如我们设置了一个等待时间 3 秒的函数，在这 3 秒内如果遇到函数调用请求就重新计时 3 秒，直至新的 3 秒内没有函数调用请求，此时执行函数，不然就以此类推重新计时。  123456789101112131415function debounce(fn) &amp;#">
+<meta property="og:description" content="JavaScript之节流、防抖防抖： 防抖函数 debounce 指的是某个函数在某段时间内，无论触发了多少次回调，都只执行最后一次。假如我们设置了一个等待时间 3 秒的函数，在这 3 秒内如果遇到函数调用请求就重新计时 3 秒，直至新的 3 秒内没有函数调用请求，此时执行函数，不然就以此类推重新计时">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="d:%5Cblog%5Cmyblog%5Csource%5Cimages%5C54699328-c29a8080-4b6b-11e9-8cd2-d6b90c093854.png">
 <meta property="og:image" content="d:%5Cblog%5Cmyblog%5Csource%5Cimages%5C54699520-22912700-4b6c-11e9-9432-f122fd057ec0.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/25895849/54699547-2f157f80-4b6c-11e9-8a2c-20b3db5b02d2.png">
 <meta property="og:image" content="d:%5Cblog%5Cmyblog%5Csource%5Cimages%5C2019-07-24-60159.jpg">
 <meta property="article:published_time" content="2020-06-30T04:00:43.741Z">
-<meta property="article:modified_time" content="2020-06-30T04:00:43.741Z">
+<meta property="article:modified_time" content="2020-08-07T14:36:55.554Z">
 <meta property="article:author" content="夏天。">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="d:%5Cblog%5Cmyblog%5Csource%5Cimages%5C54699328-c29a8080-4b6b-11e9-8cd2-d6b90c093854.png">
@@ -436,8 +436,10 @@
 
       
         <h1 id="JavaScript之节流、防抖"><a href="#JavaScript之节流、防抖" class="headerlink" title="JavaScript之节流、防抖"></a>JavaScript之节流、防抖</h1><h1 id="防抖："><a href="#防抖：" class="headerlink" title="防抖："></a>防抖：</h1><blockquote>
-<p>防抖函数 debounce 指的是某个函数在某段时间内，无论触发了多少次回调，<strong>都只执行最后一次</strong>。假如我们设置了一个等待时间 3 秒的函数，在这 3 秒内如果遇到函数调用请求就重新计时 3 秒，直至新的 3 秒内没有函数调用请求，此时执行函数，不然就以此类推重新计时。</p>
+<p>防抖函数 debounce 指的是某个函数在某段时间内，无论触发了多少次回调，<strong>都只执行最后一次</strong>。假如我们设置了一个等待时间 3 秒的函数，在这 3 秒内如果遇到函数调用请求就重新计时 3 秒，直至新的 3 秒内没有函数调用请求，此时执行函数，不然就以此类推重新计时</p>
 </blockquote>
+<a id="more"></a>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> timeout = <span class="literal">null</span>; <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(timeout); <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span><br><span class="line">        timeout = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span><br><span class="line">          fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;, <span class="number">500</span>);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'防抖成功'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> inp = <span class="built_in">document</span>.getElementById(<span class="string">'inp'</span>);</span><br><span class="line">    inp.addEventListener(<span class="string">'input'</span>, debounce(sayHi)); <span class="comment">// 防抖</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="关于fn-apply-this-arguments-的理解："><a href="#关于fn-apply-this-arguments-的理解：" class="headerlink" title="关于fn.apply(this, arguments)的理解："></a>关于<code>fn.apply(this, arguments)</code>的理解：</h3><p><code>inp.addEventListener(&#39;input&#39;, debounce(sayHi));</code>这条代码中debounce立即执行，此时的debouce的this指向window，其返回值作为事件监听执行的函数，当输入框内容改变时，debounce的返回函数执行，该函数的this是指向input的，在其函数内部的setTimeout回调函数中，由于setTimeout中的回调函数是箭头函数，故回调函数的this是外层的词法作用域中的this，即input，至此，防抖函数执行时，其this是指向input的。而当setTimeout回调函数是普通函数时，其this是指向window的，故需要在debounce函数的返回函数中保存this，将其绑定到setTimeout回调中。</p>
