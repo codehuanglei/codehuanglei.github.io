@@ -120,11 +120,14 @@
 <meta property="og:site_name" content="吴天是个大傻逼">
 <meta property="og:description" content="精确率是针对我们预测结果而言的，它表示的是预测为正的样本中有多少是真正的正样本。那么预测为正就有两种可能了，一种就是把正类预测为正类(TP)，另一种就是把负类预测为正类(FP)，也就是$$P &#x3D; TP&#x2F;(TP+FP)$$而召回率是针对我们原来的样本而言的，它表示的是样本中的正例有多少被预测正确了。那也有两种可能，一种是把原来的正类预测成正类(TP)，另一种就是把原来的正类预测为负类(FN)。$$R">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/09/20/images/equation.svg">
+<meta property="og:image" content="http://yoursite.com/2020/09/20/images/equation%202.svg">
 <meta property="article:published_time" content="2020-09-20T14:02:23.000Z">
-<meta property="article:modified_time" content="2020-09-20T14:05:05.650Z">
+<meta property="article:modified_time" content="2020-09-22T14:48:23.684Z">
 <meta property="article:author" content="夏天。">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/09/20/images/equation.svg">
 
 
 
@@ -474,6 +477,21 @@
 <li>TN: 将负类预测为负类数  30</li>
 </ul>
 <p><strong>准确率</strong>(accuracy) = 预测对的/所有 = (TP+TN)/(TP+FN+FP+TN) = 70%<br><strong>精确率</strong>(precision) = TP/(TP+FP) = 80%<br><strong>召回率</strong>(recall) = TP/(TP+FN) = 2/3</p>
+<p>实例化讲解吧。比如我们的香蕉中 1 表示好的，0表示坏的，有10个香蕉：</p>
+<p>gold : [ 1，1，1，1，1，0，0，0，0，0 ]</p>
+<p>pred： [ 1，0，1，1，1，1，1，0，0，0 ]</p>
+<p>注释：gold是现实的好坏；pred是预测的好坏。</p>
+<p>P(Precision) 查准率：就是上面说的”准”。字面意思好理解呀，就是在预测当中查找准确个数的比例。公式为：</p>
+<p><strong>P=真正预测准确的数量/预测是准确的数量 = 4 / 6</strong></p>
+<p>R(Recall) 查全率：就是上面的”全”。根据字面理解，在预测中看看真正预测对的占全有对的比率。公式为：</p>
+<p><strong>R=真正预测准确的数量/所有真正好的数量 = 4 / 5</strong></p>
+<p>F值是：</p>
+<p><img src="../images/equation.svg" alt="equation"></p>
+<p>注释：k&gt;0 度量了 查全率 对 查准率 的相对重要性。<strong>k&gt;1查全率有更大影响；k&lt;1查准率有更大影响。</strong></p>
+<p><strong>在这个实例中可以表示为：k&gt;1就是查全率有更大影响，就是好的香蕉最好都预测出来，因为你觉得不想把好的当成坏的扔点( 真可惜，我爱吃啊 ) ；</strong></p>
+<p><strong>k&lt;1查准率有更大影响，就是一定要准确，省时间，省力更重要，不在乎好的香蕉当坏的扔点。</strong></p>
+<p>而我们常用的是F1，就是F(1)的意思，k=1，比如我们做一个分类任务，这几个类觉得都一样重要。此时：</p>
+<p><img src="../images/equation%202.svg" alt="equation 2"></p>
 
       
     </div>
