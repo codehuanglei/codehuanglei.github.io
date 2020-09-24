@@ -355,6 +355,197 @@
   
   <div class="post-date">
 			<div class="post-month">09月</div>
+			<div class="post-day">24</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+          <span itemprop="name">笔记</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏天。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/DIYgod.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴天是个大傻逼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/" itemprop="url">计算机组成原理笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-24T16:23:58+08:00">
+                2020-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><h2 id="1-定点数表示和运算"><a href="#1-定点数表示和运算" class="headerlink" title="1.定点数表示和运算"></a>1.定点数表示和运算</h2><h3 id="1-无符号数和有符号数"><a href="#1-无符号数和有符号数" class="headerlink" title="1.无符号数和有符号数"></a>1.无符号数和有符号数</h3><p>(1) 无符号数：没有符号位，若机器字长为8位，则范围为0 ~ 2^8-1</p>
+<p>(2) 有符号数：0表示正，1表示负，有符号数的机器表示有原码、补码、反码、移码</p>
+<h3 id="2-机器数的定点表示"><a href="#2-机器数的定点表示" class="headerlink" title="2.机器数的定点表示"></a>2.机器数的定点表示</h3><p>机器数的定点表示：设机器字长为n+1位</p>
+<p>(1) 定点小数：约定小数点位置在符号位之后、有效数值部分最高位之前</p>
+<p>最大正数：符号位为0，数值位均为1，真值为1-2^-n</p>
+<p>最小负数：符号位为1，数值位均为1，真值为2^-n -1</p>
+<p>(2) 定点整数：约定小数点位置在有效数值部分最低位之后</p>
+<p>最大正数：符号位为0，数值位均为1，真值为2^n-1</p>
+<p>最小负数：符号位为1，数值位均为1，真值为1-2^n</p>
+<h3 id="3-原码、补码、反码、移码"><a href="#3-原码、补码、反码、移码" class="headerlink" title="3.原码、补码、反码、移码"></a>3.原码、补码、反码、移码</h3><h4 id="原码表示法："><a href="#原码表示法：" class="headerlink" title="原码表示法："></a>原码表示法：</h4><p>(1) 纯小数的原码：</p>
+<p>当真值x大于等于0且小于1时，原码为其本身</p>
+<p>当真值x大于-1且小于等于0时，原码的符号位为1，数值位为原小数部分</p>
+<p>(2) 纯整数的原码：</p>
+<p>当真值x大于等于0且小于2^n时，原码为0,x</p>
+<p>当真值x大于-2^n且小于等于0时，原码为符号位为1</p>
+<p><strong>真值0的原码有正零和负零两种形式：正0=00000，负0=10000</strong></p>
+<h4 id="补码表示法："><a href="#补码表示法：" class="headerlink" title="补码表示法："></a>补码表示法：</h4><p>补码为原码符号位不变，其他各位取反再加一的结果</p>
+<p>(1) 纯小数的补码：</p>
+<p>补码的表示范围：-1 ≤ x ≤ 1-2^-n（比原码多表示-1）</p>
+<p>(2) 纯整数的补码定义：</p>
+<p>补码的表示范围：-2^n ≤ x ≤ 2^n-1（比原码多表示-2^n）</p>
+<p><strong>真值0的补码表示是唯一的，+0 = -0 = 0.0000</strong></p>
+<p><strong>-1的补码是1.0000</strong></p>
+<h4 id="反码表示法："><a href="#反码表示法：" class="headerlink" title="反码表示法："></a>反码表示法：</h4><p>反码为原码符号位不变，其他各位取反的结果</p>
+<p>(1) 纯小数的反码：</p>
+<p>反码的表示范围为：-（1-2^-n）≤ x ≤ 1-2^-n</p>
+<p>(2)纯整数的反码：</p>
+<p>反码的表示范围为：-（2^n - 1）≤ x ≤ 2^n -1</p>
+<p>*<em>真值0的反码表示不唯一，+0 = 0.0000，-0 = 1.1111 *</em></p>
+<h4 id="移码的表示法："><a href="#移码的表示法：" class="headerlink" title="移码的表示法："></a>移码的表示法：</h4><p>移码只能表示整数</p>
+<p><strong>移码为在补码的符号位上取反的结果</strong></p>
+<p><img src="../images/%E8%A1%A5%E7%A0%81%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81.png" alt="补码原码反码"></p>
+
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">09月</div>
 			<div class="post-day">21</div>
 	</div>
   
@@ -1788,134 +1979,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-date">
-			<div class="post-month">06月</div>
-			<div class="post-day">28</div>
-	</div>
-  
-
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/JavaScript%E4%B8%ADArray.prototype.slice.call()%E7%9A%84%E7%90%86%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏天。">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/DIYgod.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴天是个大傻逼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/28/JavaScript%E4%B8%ADArray.prototype.slice.call()%E7%9A%84%E7%90%86%E8%A7%A3/" itemprop="url">JavaScript中Array.prototype.slice.call()的理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-28T18:29:43+08:00">
-                2020-06-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="JavaScript中Array-prototype-slice-call-的理解"><a href="#JavaScript中Array-prototype-slice-call-的理解" class="headerlink" title="JavaScript中Array.prototype.slice.call()的理解"></a>JavaScript中Array.prototype.slice.call()的理解</h1><p>看到了一篇博客中讲到如何讲函数的arguments转化为数组，其中用到了<code>Array.prototype.slice.call()</code>方法，代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(args.reduce(<span class="function">(<span class="params">sum, cur</span>) =&gt;</span> sum + cur));<span class="comment">//args可以调用数组原生的方法啦</span></span><br><span class="line">&#125;</span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>);<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/28/JavaScript%E4%B8%ADArray.prototype.slice.call()%E7%9A%84%E7%90%86%E8%A7%A3/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2041,7 +2104,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2052,7 +2115,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

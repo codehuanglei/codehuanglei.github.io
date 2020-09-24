@@ -360,6 +360,134 @@
   
 
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/JavaScript%E4%B8%ADArray.prototype.slice.call()%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏天。">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/DIYgod.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴天是个大傻逼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/28/JavaScript%E4%B8%ADArray.prototype.slice.call()%E7%9A%84%E7%90%86%E8%A7%A3/" itemprop="url">JavaScript中Array.prototype.slice.call()的理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-28T18:29:43+08:00">
+                2020-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="JavaScript中Array-prototype-slice-call-的理解"><a href="#JavaScript中Array-prototype-slice-call-的理解" class="headerlink" title="JavaScript中Array.prototype.slice.call()的理解"></a>JavaScript中Array.prototype.slice.call()的理解</h1><p>看到了一篇博客中讲到如何讲函数的arguments转化为数组，其中用到了<code>Array.prototype.slice.call()</code>方法，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(args.reduce(<span class="function">(<span class="params">sum, cur</span>) =&gt;</span> sum + cur));<span class="comment">//args可以调用数组原生的方法啦</span></span><br><span class="line">&#125;</span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>);<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/28/JavaScript%E4%B8%ADArray.prototype.slice.call()%E7%9A%84%E7%90%86%E8%A7%A3/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">06月</div>
+			<div class="post-day">28</div>
+	</div>
+  
+
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/JavaScript%20EventLoop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1605,167 +1733,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-date">
-			<div class="post-month">05月</div>
-			<div class="post-day">10</div>
-	</div>
-  
-  <div class="post-badge">
-    
-      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/Vue/" itemprop="url" rel="index">
-          <span itemprop="name">Vue</span>
-        </a>
-      </span>
-    
-  </div>
-  
-
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/10/Vue%E5%8E%BB%E5%93%AA%E5%84%BF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="夏天。">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/DIYgod.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴天是个大傻逼">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/10/Vue%E5%8E%BB%E5%93%AA%E5%84%BF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/" itemprop="url">Vue去哪儿项目开发</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-10T16:22:21+08:00">
-                2020-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">•</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-项目初始化"><a href="#1-项目初始化" class="headerlink" title="1.项目初始化"></a>1.项目初始化</h1><p><strong>设置用户手指端放大缩小无效操作</strong></p>
-<p>在public目录下的index.html文件的meta标签中添加：</p>
-<p>“minimum-scale=1.0,maximum-scale=1.0,user-scalable=no”</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/10/Vue%E5%8E%BB%E5%93%AA%E5%84%BF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1891,7 +1858,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1902,7 +1869,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
